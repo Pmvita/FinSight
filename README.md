@@ -21,10 +21,8 @@ vercel --prod
 | Install | `npm install` |
 | Build | `npm run build --workspace=web` (root `npm run build`) |
 | Output | `.next` (rootDirectory `apps/web`) |
-| Live URL | https://finsight-pierres-projects-3ccb9894.vercel.app |
+| Live URL | https://finsight-nu-lime.vercel.app |
 | Demo login | `demo@finsight.dev` / `demo1234` |
-
-**Live URL:** https://finsight-nu-lime.vercel.app
 
 ### Design system (locked)
 
