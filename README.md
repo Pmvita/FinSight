@@ -20,7 +20,8 @@ vercel --prod
 | Framework | Next.js (`apps/web`) |
 | Install | `npm install` |
 | Build | `npm run build --workspace=web` (root `npm run build`) |
-| Output | `apps/web/.next` |
+| Output | `.next` (rootDirectory `apps/web`) |
+| Live URL | https://finsight-pierres-projects-3ccb9894.vercel.app |
 | Demo login | `demo@finsight.dev` / `demo1234` |
 
 **Live URL:** https://finsight-nu-lime.vercel.app
@@ -73,4 +74,5 @@ See `supabase/migrations/20261108_init.sql` — profiles, accounts, categories, 
 ## License
 
 MIT
+
 
