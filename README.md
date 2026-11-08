@@ -1,4 +1,4 @@
-﻿# FinSight
+# FinSight
 
 Cashflow analytics demo — Next.js dashboard + REST API routes over a seeded in-memory store, with Supabase SQL migrations ready for Postgres.
 
