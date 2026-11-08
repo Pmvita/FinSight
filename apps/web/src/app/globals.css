@@ -1,0 +1,581 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0f1714;
+  --surface: #18241f;
+  --panel: #1f2e28;
+  --mint: #2ec4a0;
+  --mint-dim: #1a8f74;
+  --ink: #e8f2ed;
+  --muted: #8aa99a;
+  --warn: #e8a317;
+  --loss: #e85d4c;
+  --grid: rgba(46, 196, 160, 0.08);
+  --line: rgba(46, 196, 160, 0.16);
+  --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+  --radius: 16px;
+  --font-display: var(--font-fraunces);
+  --font-ui: var(--font-outfit);
+}
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--ink);
+  --font-sans: var(--font-ui);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--bg);
+  font-family: var(--font-ui), "Outfit", sans-serif;
+  letter-spacing: 0.01em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.fs-atmosphere {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  background:
+    radial-gradient(900px 520px at 12% -8%, rgba(46, 196, 160, 0.16), transparent 58%),
+    radial-gradient(720px 420px at 92% 8%, rgba(26, 143, 116, 0.14), transparent 55%),
+    linear-gradient(165deg, #0c1411 0%, var(--bg) 42%, #12201b 100%);
+}
+
+.fs-atmosphere::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.35;
+  background-image: repeating-linear-gradient(
+    -32deg,
+    transparent,
+    transparent 11px,
+    rgba(46, 196, 160, 0.035) 11px,
+    rgba(46, 196, 160, 0.035) 12px
+  );
+  pointer-events: none;
+}
+
+.fs-atmosphere::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at center, black 35%, transparent 80%);
+  pointer-events: none;
+}
+
+.fs-display {
+  font-family: var(--font-display), "Fraunces", Georgia, serif;
+  letter-spacing: -0.03em;
+}
+
+.fs-shell {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 1.5rem 0 3rem;
+}
+
+.fs-brand {
+  font-family: var(--font-display), "Fraunces", Georgia, serif;
+  font-size: clamp(2.4rem, 6vw, 3.75rem);
+  font-weight: 650;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  margin: 0;
+  color: var(--ink);
+}
+
+.fs-brand span {
+  color: var(--mint);
+}
+
+.fs-eyebrow {
+  margin: 0 0 0.45rem;
+  color: var(--mint);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.fs-lede {
+  margin: 0.65rem 0 0;
+  max-width: 34rem;
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.55;
+}
+
+.fs-muted {
+  color: var(--muted);
+}
+
+.fs-card {
+  background: color-mix(in srgb, var(--panel) 92%, transparent);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+.fs-card-pad {
+  padding: 1.15rem 1.2rem;
+}
+
+.fs-interactive {
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.fs-interactive:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--mint) 45%, var(--line));
+}
+
+.fs-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  padding: 0.65rem 1.15rem;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: var(--mint);
+  color: #06241c;
+  font-weight: 650;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.fs-btn:hover {
+  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--mint) 88%, white);
+  box-shadow: 0 12px 28px rgba(46, 196, 160, 0.22);
+}
+
+.fs-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.fs-btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.fs-btn-ghost:hover {
+  border-color: var(--mint);
+  color: var(--mint);
+  background: transparent;
+  box-shadow: none;
+}
+
+.fs-field {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.fs-field input,
+.fs-field select {
+  min-height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 88%, black);
+  color: var(--ink);
+  padding: 0.55rem 0.8rem;
+}
+
+.fs-field input:focus,
+.fs-field select:focus {
+  outline: 2px solid color-mix(in srgb, var(--mint) 55%, transparent);
+  outline-offset: 1px;
+}
+
+.fs-error {
+  color: var(--loss);
+  background: rgba(232, 93, 76, 0.08);
+  border: 1px solid rgba(232, 93, 76, 0.28);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  margin: 0;
+}
+
+.fs-up {
+  color: var(--mint);
+}
+
+.fs-down {
+  color: var(--loss);
+}
+
+.fs-warn {
+  color: var(--warn);
+}
+
+@keyframes fs-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fs-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fs-fill {
+  from {
+    transform: scaleY(0.08);
+    opacity: 0.35;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+.fs-rise {
+  animation: fs-rise 640ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.fs-rise-d1 {
+  animation-delay: 60ms;
+}
+.fs-rise-d2 {
+  animation-delay: 120ms;
+}
+.fs-rise-d3 {
+  animation-delay: 180ms;
+}
+.fs-rise-d4 {
+  animation-delay: 240ms;
+}
+.fs-rise-d5 {
+  animation-delay: 300ms;
+}
+
+.fs-draw-path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: fs-draw 1.1s 180ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.fs-bar-grow {
+  transform-origin: bottom;
+  animation: fs-fill 780ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fs-rise,
+  .fs-draw-path,
+  .fs-bar-grow,
+  .fs-interactive,
+  .fs-btn {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .fs-interactive:hover,
+  .fs-btn:hover {
+    transform: none;
+  }
+
+  .fs-draw-path {
+    stroke-dashoffset: 0;
+  }
+}
+
+.fs-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.65rem;
+}
+
+.fs-section-title {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 650;
+}
+
+.fs-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-bottom: 0.9rem;
+}
+
+.fs-kpi-label {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.fs-kpi-value {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-display), "Fraunces", Georgia, serif;
+  font-size: clamp(1.55rem, 3vw, 2rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+
+.fs-charts {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 0.9rem;
+  margin-bottom: 0.9rem;
+}
+
+.fs-spend-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.fs-spend-total {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.fs-spend-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 1.25rem;
+  margin-top: 1.15rem;
+  align-items: center;
+}
+
+.fs-donut {
+  width: 100%;
+  max-width: 220px;
+  justify-self: center;
+}
+
+.fs-cashflow {
+  width: 100%;
+  margin-top: 0.85rem;
+  overflow: visible;
+}
+
+.fs-legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.fs-legend-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.fs-legend-row span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.fs-legend-row i,
+.fs-chart-legend i {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.fs-meter {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(46, 196, 160, 0.1);
+  overflow: hidden;
+}
+
+.fs-meter > div {
+  height: 100%;
+  border-radius: 999px;
+}
+
+.fs-chart-legend {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.35rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.fs-chart-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.fs-tx-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 0.9rem;
+  margin-bottom: 0.9rem;
+}
+
+.fs-form-grid {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.fs-tx-list {
+  list-style: none;
+  margin: 0.85rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.fs-tx-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.7rem 0.75rem;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+}
+
+.fs-tx-row strong {
+  display: block;
+  font-weight: 600;
+}
+
+.fs-tx-row span {
+  display: block;
+  font-size: 0.78rem;
+  margin-top: 0.15rem;
+}
+
+.fs-tx-row em {
+  font-style: normal;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.fs-account-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.fs-account-chip {
+  display: grid;
+  gap: 0.25rem;
+  text-align: left;
+  padding: 0.9rem 1rem;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  color: var(--ink);
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.fs-account-chip strong {
+  font-family: var(--font-display), "Fraunces", Georgia, serif;
+  font-size: 1.25rem;
+  letter-spacing: -0.03em;
+}
+
+.fs-account-chip em {
+  font-style: normal;
+  color: var(--mint-dim);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.fs-login {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.fs-login-card {
+  width: min(420px, 100%);
+}
+
+.fs-login-form {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 1.25rem;
+}
+
+.fs-hint {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+@media (max-width: 900px) {
+  .fs-kpi-row,
+  .fs-charts,
+  .fs-tx-grid,
+  .fs-spend-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .fs-shell {
+    width: min(100% - 1.25rem, 1180px);
+    padding-top: 1.1rem;
+  }
+
+  .fs-topbar {
+    flex-direction: column;
+  }
+}

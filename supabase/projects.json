@@ -1,0 +1,27 @@
+{
+  "organization": "Pierre's projects",
+  "organization_id": "vercel_icfg_357MP14FYsWnol2xBfa2YF9v",
+  "environments": {
+    "dev": {
+      "name": "FinSight-dev",
+      "project_ref": "esnfalxdcufywylvmiyn",
+      "url": "https://esnfalxdcufywylvmiyn.supabase.co",
+      "region": "us-east-1",
+      "database_host": "db.esnfalxdcufywylvmiyn.supabase.co",
+      "dashboard_url": "https://supabase.com/dashboard/project/esnfalxdcufywylvmiyn"
+    },
+    "prod": {
+      "name": "FinSight-prod",
+      "project_ref": "zwinewubtlefhaokkvcr",
+      "url": "https://zwinewubtlefhaokkvcr.supabase.co",
+      "region": "us-east-1",
+      "database_host": "db.zwinewubtlefhaokkvcr.supabase.co",
+      "dashboard_url": "https://supabase.com/dashboard/project/zwinewubtlefhaokkvcr"
+    }
+  },
+  "local": {
+    "api_url": "http://127.0.0.1:54321",
+    "studio_url": "http://127.0.0.1:54323",
+    "database_url": "postgresql://postgres:postgres@127.0.0.1:54322/postgres"
+  }
+}

@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Environment (never commit secrets)
+.env
+.env.local
+.env.*.local
+
+# Supabase CLI internal state
+supabase/.temp/
+supabase/.branches/
+
+# Build / cache
+.next/
+dist/
+build/
+*.tsbuildinfo
+
+# OS / editor
+.DS_Store
+*.log
