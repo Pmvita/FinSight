@@ -1,4 +1,4 @@
-# FinSight
+﻿# FinSight
 
 Cashflow analytics demo — Next.js dashboard + REST API routes over a seeded in-memory store, with Supabase SQL migrations ready for Postgres.
 
@@ -23,7 +23,7 @@ vercel --prod
 | Output | `apps/web/.next` |
 | Demo login | `demo@finsight.dev` / `demo1234` |
 
-**Live URL:** https://finsight-pierres-projects-3ccb9894.vercel.app
+**Live URL:** https://finsight-nu-lime.vercel.app
 
 ### Design system (locked)
 
@@ -73,3 +73,4 @@ See `supabase/migrations/20261108_init.sql` — profiles, accounts, categories, 
 ## License
 
 MIT
+
