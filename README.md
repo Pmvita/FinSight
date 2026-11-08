@@ -23,7 +23,7 @@ vercel --prod
 | Output | `apps/web/.next` |
 | Demo login | `demo@finsight.dev` / `demo1234` |
 
-**Live URL:** _filled after `vercel --prod`_
+**Live URL:** https://finsight-pierres-projects-3ccb9894.vercel.app
 
 ### Design system (locked)
 
