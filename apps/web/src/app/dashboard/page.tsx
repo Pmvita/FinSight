@@ -101,8 +101,10 @@ export default function DashboardPage() {
 
   if (loading && !summary) {
     return (
-      <main className="dash-shell">
-        <p className="muted">Loading dashboard…</p>
+      <main className="fs-atmosphere">
+        <div className="fs-shell">
+          <p className="fs-muted fs-rise">Loading forest ledger…</p>
+        </div>
       </main>
     );
   }
@@ -119,132 +121,144 @@ export default function DashboardPage() {
   }));
 
   return (
-    <main className="dash-shell">
-      <header className="dash-header">
-        <div>
-          <p className="eyebrow">FinSight</p>
-          <h1>Cashflow dashboard</h1>
-          <p className="lede">{summary?.period || "Demo period"}</p>
-        </div>
-        <button className="ghost" onClick={logout} type="button">
-          Sign out
-        </button>
-      </header>
-
-      {error && <p className="error">{error}</p>}
-
-      <section className="kpi-row">
-        <article className="kpi">
-          <span>Revenue</span>
-          <strong>{money(summary?.totalRevenue || 0)}</strong>
-        </article>
-        <article className="kpi">
-          <span>Expenses</span>
-          <strong>{money(summary?.totalExpenses || 0)}</strong>
-        </article>
-        <article className="kpi">
-          <span>Net margin</span>
-          <strong className={(summary?.netMargin || 0) >= 0 ? "up" : "down"}>
-            {money(summary?.netMargin || 0)}
-          </strong>
-        </article>
-      </section>
-
-      <section className="chart-grid">
-        <article className="panel">
-          <h2>Revenue vs expenses</h2>
-          <div className="chart-box">
-            <DualLineChart data={lineData} />
-          </div>
-        </article>
-
-        <article className="panel">
-          <h2>Budget vs actual</h2>
-          <div className="chart-box">
-            <DualBarChart data={barData} />
-          </div>
-        </article>
-      </section>
-
-      <section className="split-grid">
-        <article className="panel">
-          <h2>Add transaction</h2>
-          <form className="tx-form" onSubmit={onCreate}>
-            <label>
-              Account
-              <select value={accountId} onChange={(e) => setAccountId(e.target.value)} required>
-                {accounts.map((a) => (
-                  <option key={a.id} value={a.id}>
-                    {a.name}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Category
-              <select value={categoryId} onChange={(e) => setCategoryId(e.target.value)} required>
-                {categories.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.name} ({c.type})
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Amount
-              <input
-                type="number"
-                step="0.01"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-                placeholder="e.g. 1200"
-                required
-              />
-            </label>
-            <label>
-              Description
-              <input value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Optional note" />
-            </label>
-            <button type="submit" disabled={saving}>
-              {saving ? "Saving…" : "Create transaction"}
-            </button>
-          </form>
-          <p className="hint">Expense categories store amounts as outflows automatically.</p>
-        </article>
-
-        <article className="panel">
-          <h2>Recent transactions</h2>
-          <ul className="tx-list">
-            {transactions.slice(0, 10).map((t) => {
-              const cat = categories.find((c) => c.id === t.categoryId)?.name || t.categoryId;
-              return (
-                <li key={t.id}>
-                  <div>
-                    <strong>{t.description || cat}</strong>
-                    <span>
-                      {t.transactionDate} · {cat}
-                    </span>
-                  </div>
-                  <em className={t.amount >= 0 ? "up" : "down"}>{money(t.amount)}</em>
-                </li>
-              );
-            })}
-          </ul>
-        </article>
-      </section>
-
-      <section className="panel">
-        <h2>Accounts</h2>
-        <div className="account-row">
-          {accounts.map((a) => (
-            <div key={a.id} className="account-chip">
-              <span>{a.name}</span>
-              <strong>{money(a.balance)}</strong>
+    <main className="fs-atmosphere">
+      <div className="fs-shell">
+        <header className="fs-topbar fs-rise">
+          <div className="fs-brand-row">
+            <img className="fs-mark" src="/finsight-mark.jpg" alt="" width={52} height={52} />
+            <div>
+              <p className="fs-eyebrow">Forest ledger</p>
+              <h1 className="fs-brand">
+                Fin<span>Sight</span>
+              </h1>
+              <p className="fs-lede" style={{ marginTop: "0.35rem" }}>
+                {summary?.period || "Demo period"} — balances, spend mix, and cashflow without spreadsheet fog.
+              </p>
             </div>
-          ))}
-        </div>
-        <p className="hint">Top expense categories: {expenseCats.map((c) => c.name).join(", ")}</p>
-      </section>
+          </div>
+          <button className="fs-btn fs-btn-ghost" onClick={logout} type="button">
+            Sign out
+          </button>
+        </header>
+
+        {error && <p className="fs-error fs-rise">{error}</p>}
+
+        <section className="fs-kpi-row">
+          <article className="fs-card fs-card-pad fs-interactive fs-rise fs-rise-d1">
+            <p className="fs-kpi-label">Revenue</p>
+            <p className="fs-kpi-value fs-up">{money(summary?.totalRevenue || 0)}</p>
+          </article>
+          <article className="fs-card fs-card-pad fs-interactive fs-rise fs-rise-d2">
+            <p className="fs-kpi-label">Expenses</p>
+            <p className="fs-kpi-value fs-down">{money(summary?.totalExpenses || 0)}</p>
+          </article>
+          <article className="fs-card fs-card-pad fs-interactive fs-rise fs-rise-d3">
+            <p className="fs-kpi-label">Net margin</p>
+            <p className={`fs-kpi-value ${(summary?.netMargin || 0) >= 0 ? "fs-up" : "fs-down"}`}>
+              {money(summary?.netMargin || 0)}
+            </p>
+          </article>
+        </section>
+
+        <section className="fs-chart-grid">
+          <article className="fs-card fs-card-pad fs-rise fs-rise-d2">
+            <h2 className="fs-panel-title">Revenue vs expenses</h2>
+            <div className="fs-chart-box">
+              <DualLineChart data={lineData} />
+            </div>
+          </article>
+          <article className="fs-card fs-card-pad fs-rise fs-rise-d3">
+            <h2 className="fs-panel-title">Budget vs actual</h2>
+            <div className="fs-chart-box">
+              <DualBarChart data={barData} />
+            </div>
+          </article>
+        </section>
+
+        <section className="fs-split-grid">
+          <article className="fs-card fs-card-pad fs-rise">
+            <h2 className="fs-panel-title">Add transaction</h2>
+            <form className="fs-tx-form" onSubmit={onCreate}>
+              <label className="fs-field">
+                Account
+                <select value={accountId} onChange={(e) => setAccountId(e.target.value)} required>
+                  {accounts.map((a) => (
+                    <option key={a.id} value={a.id}>
+                      {a.name}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="fs-field">
+                Category
+                <select value={categoryId} onChange={(e) => setCategoryId(e.target.value)} required>
+                  {categories.map((c) => (
+                    <option key={c.id} value={c.id}>
+                      {c.name} ({c.type})
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="fs-field">
+                Amount
+                <input
+                  type="number"
+                  step="0.01"
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
+                  placeholder="e.g. 1200"
+                  required
+                />
+              </label>
+              <label className="fs-field">
+                Description
+                <input
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  placeholder="Optional note"
+                />
+              </label>
+              <button className="fs-btn" type="submit" disabled={saving}>
+                {saving ? "Saving…" : "Create transaction"}
+              </button>
+            </form>
+            <p className="fs-hint">Expense categories store amounts as outflows automatically.</p>
+          </article>
+
+          <article className="fs-card fs-card-pad fs-rise">
+            <h2 className="fs-panel-title">Recent transactions</h2>
+            <ul className="fs-tx-list">
+              {transactions.slice(0, 10).map((t) => {
+                const cat = categories.find((c) => c.id === t.categoryId)?.name || t.categoryId;
+                return (
+                  <li key={t.id}>
+                    <div>
+                      <strong>{t.description || cat}</strong>
+                      <span>
+                        {t.transactionDate} · {cat}
+                      </span>
+                    </div>
+                    <em className={t.amount >= 0 ? "fs-up" : "fs-down"}>{money(t.amount)}</em>
+                  </li>
+                );
+              })}
+            </ul>
+          </article>
+        </section>
+
+        <section className="fs-card fs-card-pad fs-rise">
+          <h2 className="fs-panel-title">Accounts</h2>
+          <div className="fs-account-row">
+            {accounts.map((a) => (
+              <div key={a.id} className="fs-account-chip">
+                <span>{a.name}</span>
+                <strong>{money(a.balance)}</strong>
+              </div>
+            ))}
+          </div>
+          <p className="fs-hint">Top expense categories: {expenseCats.map((c) => c.name).join(", ")}</p>
+        </section>
+      </div>
     </main>
   );
 }

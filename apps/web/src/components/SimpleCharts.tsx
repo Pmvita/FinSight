@@ -13,11 +13,24 @@ export function DualLineChart({ data }: { data: Point[] }) {
     data.map((d, i) => `${i === 0 ? "M" : "L"} ${x(i)} ${y(d[key])}`).join(" ");
 
   return (
-    <svg viewBox={`0 0 ${width} ${height}`} className="chart-svg" role="img" aria-label="Revenue vs expenses">
-      <path d={path("a")} fill="none" stroke="#5dffb1" strokeWidth="2.5" />
-      <path d={path("b")} fill="none" stroke="#ff8f70" strokeWidth="2.5" />
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      className="fs-cashflow"
+      role="img"
+      aria-label="Revenue vs expenses"
+    >
+      <path className="fs-draw-path" d={path("a")} fill="none" stroke="var(--mint)" strokeWidth="2.5" pathLength={1} />
+      <path className="fs-draw-path" d={path("b")} fill="none" stroke="var(--loss)" strokeWidth="2.5" pathLength={1} />
       {data.map((d, i) => (
-        <text key={d.label} x={x(i)} y={height - 8} textAnchor="middle" fill="#8aa8b9" fontSize="10">
+        <text
+          key={d.label}
+          x={x(i)}
+          y={height - 8}
+          textAnchor="middle"
+          fill="var(--muted)"
+          fontSize="10"
+          fontFamily="var(--font-ui)"
+        >
           {d.label.slice(5)}
         </text>
       ))}
@@ -33,16 +46,46 @@ export function DualBarChart({ data }: { data: Point[] }) {
   const groupW = (width - pad * 2) / Math.max(1, data.length);
 
   return (
-    <svg viewBox={`0 0 ${width} ${height}`} className="chart-svg" role="img" aria-label="Budget vs actual">
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      className="fs-cashflow"
+      role="img"
+      aria-label="Budget vs actual"
+    >
       {data.map((d, i) => {
         const baseX = pad + i * groupW;
         const hA = (d.a / max) * (height - pad * 2);
         const hB = (d.b / max) * (height - pad * 2);
         return (
           <g key={d.label}>
-            <rect x={baseX + 8} y={height - pad - hA} width={groupW * 0.3} height={hA} fill="#7ec8ff" rx="3" />
-            <rect x={baseX + groupW * 0.4} y={height - pad - hB} width={groupW * 0.3} height={hB} fill="#ff8f70" rx="3" />
-            <text x={baseX + groupW / 2} y={height - 8} textAnchor="middle" fill="#8aa8b9" fontSize="10">
+            <rect
+              className="fs-bar-grow"
+              x={baseX + 8}
+              y={height - pad - hA}
+              width={groupW * 0.3}
+              height={hA}
+              fill="var(--mint-dim)"
+              rx="3"
+              style={{ animationDelay: `${i * 60}ms` }}
+            />
+            <rect
+              className="fs-bar-grow"
+              x={baseX + groupW * 0.4}
+              y={height - pad - hB}
+              width={groupW * 0.3}
+              height={hB}
+              fill="var(--warn)"
+              rx="3"
+              style={{ animationDelay: `${i * 60 + 40}ms` }}
+            />
+            <text
+              x={baseX + groupW / 2}
+              y={height - 8}
+              textAnchor="middle"
+              fill="var(--muted)"
+              fontSize="10"
+              fontFamily="var(--font-ui)"
+            >
               {d.label.slice(0, 8)}
             </text>
           </g>
