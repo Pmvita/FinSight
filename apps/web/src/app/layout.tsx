@@ -18,6 +18,10 @@ export const metadata: Metadata = {
   title: "FinSight — Personal finance clarity",
   description:
     "Forest-ledger personal finance dashboard for balances, spending breakdowns, and cashflow.",
+  icons: {
+    icon: "/finsight-mark.jpg",
+    apple: "/finsight-mark.jpg",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

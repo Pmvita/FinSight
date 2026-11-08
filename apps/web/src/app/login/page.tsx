@@ -36,10 +36,15 @@ export default function LoginPage() {
   return (
     <main className="fs-atmosphere fs-login">
       <section className="fs-card fs-card-pad fs-login-card fs-rise">
-        <p className="fs-eyebrow">Personal finance</p>
-        <h1 className="fs-brand">
-          Fin<span>Sight</span>
-        </h1>
+        <div className="fs-brand-row">
+          <img className="fs-mark" src="/finsight-mark.jpg" alt="" width={56} height={56} />
+          <div>
+            <p className="fs-eyebrow">Personal finance</p>
+            <h1 className="fs-brand">
+              Fin<span>Sight</span>
+            </h1>
+          </div>
+        </div>
         <p className="fs-lede">Cool forest-ledger clarity for balances, spend mix, and cashflow — without spreadsheet fog.</p>
         <form onSubmit={onSubmit} className="fs-login-form">
           {error && <p className="fs-error">{error}</p>}

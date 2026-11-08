@@ -6,7 +6,7 @@ import type {
   DashboardSummary,
   Transaction,
   User,
-} from "./types";
+} from "./types.ts";
 
 const DEMO_USER: User = {
   id: "00000000-0000-4000-8000-000000000001",
@@ -129,6 +129,8 @@ export function authenticateDemo(email: string, password: string): User | null {
 export function getDemoCredentials() {
   return { email: DEMO_USER.email, password: DEMO_PASSWORD };
 }
+
+export { DEMO_USER };
 
 export function listAccounts(userId: string) {
   return getStore().accounts.filter((a) => a.userId === userId);
