@@ -2,6 +2,8 @@
 
 Cashflow analytics demo — Next.js dashboard + REST API routes over a seeded in-memory store, with Supabase SQL migrations ready for Postgres.
 
+> Local note: `Projects\FinSight` (sibling under `MAIN\Projects`) is a non-canonical working copy; this directory is the git source of truth.
+
 Demo login: `demo@finsight.dev` / `demo1234`
 
 ## Live on Vercel

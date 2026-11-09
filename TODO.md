@@ -1,96 +1,53 @@
-# ✅ FinSight Analytics Platform — TODO
+# FinSight — TODO (honest demo MVP)
 
-Progress tracker for the build. Check items off as you go.
+**Status:** Demo MVP shipped. Live demo uses the in-memory store + cookie session. Supabase SQL is prepared for a later Phase 2 — not wired in production.
 
----
+**Live:** https://finsight-nu-lime.vercel.app  
+**Demo login:** `demo@finsight.dev` / `demo1234`
 
-## 🏗️ Project Setup
-
-- [x] Initialize monorepo structure (`apps/web`, `apps/api`)
-- [x] Set up TypeScript configs (frontend + backend)
-- [x] Configure ESLint + Prettier
-- [x] Set up Supabase project (dev + prod)
-- [x] Create `.env.example` with required variables
-- [ ] Set up local PostgreSQL instance / Supabase connection
-- [ ] Configure CI (lint + type-check on PR)
-
-## 🗄️ Database
-
-- [ ] Design final schema (users, accounts, categories, transactions, budgets)
-- [ ] Write initial migration files
-- [ ] Add indexes on `transaction_date`, `category_id`, `account_id`
-- [ ] Set up Row-Level Security (RLS) policies in Supabase
-- [ ] Seed database with sample financial data for dev/testing
-
-## ⚙️ Backend / API
-
-- [ ] Scaffold Node.js REST API server
-- [ ] Implement auth middleware (verify Supabase JWT)
-- [ ] `GET /api/transactions` — list + filters (date, category, account)
-- [ ] `POST /api/transactions` — create transaction
-- [ ] `GET /api/accounts` — list accounts + balances
-- [ ] `GET /api/categories` — list categories
-- [ ] `POST /api/budgets` — create/update budget
-- [ ] `GET /api/budgets/variance` — budget vs. actual report
-- [ ] `GET /api/dashboard/summary` — aggregated revenue/expense summary
-- [ ] `GET /api/reports/export` — filtered report export
-- [ ] Add input validation (e.g. zod/yup schemas)
-- [ ] Add centralized error handling middleware
-- [ ] Write unit tests for services/controllers
-
-## 🖥️ Frontend
-
-- [ ] Scaffold Next.js app + routing
-- [ ] Build auth flow (login, signup, session handling)
-- [ ] Build dashboard layout shell (nav, filters, date range picker)
-- [ ] Revenue overview chart (trend line, YoY comparison)
-- [ ] Expense breakdown chart (category pie/bar + drill-down)
-- [ ] Budget vs. actual variance chart
-- [ ] Cash flow summary view
-- [ ] Transaction entry form
-- [ ] Responsive layout / mobile pass
-- [ ] Loading & empty states for all data views
-- [ ] Error boundaries + toast notifications
-
-## 🔐 Auth & Security
-
-- [ ] Wire up Supabase auth on frontend
-- [ ] Enforce JWT verification on all API routes
-- [ ] Test RLS policies against multiple user roles
-- [ ] Add rate limiting on API
-
-## 🧪 Testing & QA
-
-- [ ] Unit tests — backend services
-- [ ] Integration tests — API endpoints
-- [ ] E2E tests — critical dashboard flows (Playwright/Cypress)
-- [ ] Manual QA pass on budgeting + reporting features
-
-## 🚀 Deployment
-
-- [ ] Set up hosting for frontend (Vercel)
-- [ ] Set up hosting for API (Railway/Render/Fly.io)
-- [ ] Connect production Supabase project
-- [ ] Set up production environment variables
-- [ ] Smoke test production deployment
-
-## 📄 Documentation
-
-- [x] Write README.md with architecture diagrams
-- [ ] Document API endpoints in more detail (OpenAPI/Swagger)
-- [ ] Add CONTRIBUTING.md
-- [ ] Add screenshots/GIFs of dashboard to README
+> Local note: `Projects\FinSight` (repo-root sibling) is a **non-canonical** working copy. This repo under `1) Full-Stack Engineering\FinSight` is the source of truth for git/GitHub.
 
 ---
 
-## 🗺️ Future / Roadmap (post-MVP)
+## Done (demo MVP)
 
-- [ ] Multi-currency support
-- [ ] Forecasting module (trend projection)
-- [ ] Role-based access control (Admin / Analyst / Viewer)
-- [ ] Scheduled email reports (PDF export)
-- [ ] Bank feed integration (Plaid)
+- [x] Monorepo: `apps/web` (Next.js) + `apps/api` helpers
+- [x] TypeScript + ESLint + Prettier
+- [x] Seeded in-memory demo store (accounts, categories, transactions, budgets, dashboard summary)
+- [x] Cookie demo auth (`demo@finsight.dev` / `demo1234`) — not Supabase JWT
+- [x] Next.js route handlers for auth + dashboard APIs
+- [x] Dashboard UI: KPIs, cashflow trend, spending mix, transactions, accounts
+- [x] Unit tests on the demo store
+- [x] GitHub Actions CI (`.github/workflows/ci.yml` — install, test, web build)
+- [x] Vercel production deploy (demo store path)
+- [x] `supabase/migrations` + `seed.sql` checked in for a future Postgres cutover
+- [x] `.env.example` documents optional Supabase vars (unused by the live demo)
+- [x] README accurate to the demo-MVP reality
 
 ---
 
-_Last updated: 2026-07-22_
+## Phase 2 — real Supabase (out of scope for portfolio demo)
+
+Do **not** treat these as done. Migrations exist; production DB / JWT / RLS are **not** connected.
+
+- [ ] Point a real Supabase project at `supabase/migrations`
+- [ ] Replace demo cookie auth with Supabase Auth + JWT verification on API routes
+- [ ] Enforce RLS for multi-user data isolation
+- [ ] Swap the demo store for live Postgres reads/writes
+- [ ] Production env vars for Supabase URL/keys (keep secrets out of git)
+- [ ] Optional: OpenAPI/Swagger for the REST surface
+- [ ] Optional: E2E (Playwright) on critical dashboard flows
+
+---
+
+## Roadmap (post Phase 2)
+
+- [ ] Multi-currency
+- [ ] Forecasting / trend projection
+- [ ] Role-based access (Admin / Analyst / Viewer)
+- [ ] Scheduled email / PDF reports
+- [ ] Bank feed (Plaid)
+
+---
+
+_Last updated: 2026-11-08_
